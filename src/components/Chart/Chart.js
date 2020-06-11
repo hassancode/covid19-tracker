@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const Chart = () => {
-    const [dailyData, setDailyData] = useState({});
+    //const [dailyData, setDailyData] = useState({});
 
    
     return (

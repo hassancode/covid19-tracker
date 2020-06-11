@@ -1,7 +1,6 @@
 import React from 'react';
 //import logo from './logo.svg';
 import './App.css';
-import CaseBox from './CaseBox.js'
 import { Cards, CountryPicker, Chart } from './components';
 import styles from './App.module.css';
 import { fetchData } from './api';
