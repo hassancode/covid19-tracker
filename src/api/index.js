@@ -11,19 +11,23 @@ export const fetchData = async () => {
 
         function setData(data) {
             return { confirmed: data.confirmed, recovered: data.recovered, deaths: data.deaths, lastUpdate: data.lastUpdate }
-        } 
+        }
         return response;
     } catch (error) {
     }
 }
 
-export const fetchDailyData = async () =>{
+export const fetchDailyData = async () => {
     try {
         const response = await fetch(url + "/daily")
-        const result = await response.json();
-        console.log("response:" + response)
-        console.log("result:" +result);
+        const objects = await response.json();
+        const data = objects.map(dailyData => ({
+            confirmed: dailyData.confirmed.total,
+            deaths: dailyData.deaths.total,
+            date: dailyData.reportDate
+        }));
+        return data;
     } catch (error) {
-        
+        console.log(error);
     }
 }
