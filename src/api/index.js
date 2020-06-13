@@ -1,8 +1,12 @@
 const url = "https://covid19.mathdro.id/api";
 
-export const fetchData = async () => {
+export const fetchData = async (country) => {
     try {
-        const response = await fetch(url)
+        let changeableUrl = url;
+        if(country){
+            changeableUrl = `${url}/countries/${country}`;
+        }
+        const response = await fetch(changeableUrl)
             .then(response => response.json())
             .then((data) => setData(data))
             .catch(err => {
@@ -14,6 +18,16 @@ export const fetchData = async () => {
         }
         return response;
     } catch (error) {
+    }
+}
+
+export const fetchCountries = async () => {
+    try {
+        const response = await fetch(url + "/countries")
+        const data = await response.json();
+        return data.countries.map((country)=>country.name);
+    } catch (error) {
+        console.log(error);
     }
 }
 
